@@ -17,7 +17,6 @@ namespace tidy {
 namespace misc {
 
 void AlphabeticalDeclOrderCheck::registerMatchers(MatchFinder *Finder) {
-  // FIXME: Add matchers.
   Finder->addMatcher(declStmt().bind("stmt"), this);
 }
 
@@ -26,8 +25,6 @@ bool AlphabeticalDeclOrderCheck::checkAlphabeticalOrder(const DeclStmt *MatchedS
   auto it = MatchedStmt->decl_begin();
   auto firstVarDecl = dyn_cast<VarDecl>(*MatchedStmt->decl_begin());
   bool found = true;
-  
-
   
   DeclNames.push_back(firstVarDecl->getName());
   ++it;
@@ -49,7 +46,6 @@ bool AlphabeticalDeclOrderCheck::checkAlphabeticalOrder(const DeclStmt *MatchedS
 }
 
 void AlphabeticalDeclOrderCheck::check(const MatchFinder::MatchResult &Result) {
-  // FIXME: Add callback implementation.
   std::vector<StringRef> ret;
   const auto *MatchedStmt = Result.Nodes.getNodeAs<DeclStmt>("stmt");
   bool fixDecl = true;
@@ -63,7 +59,6 @@ void AlphabeticalDeclOrderCheck::check(const MatchFinder::MatchResult &Result) {
   }
 
   if (!checkAlphabeticalOrder(MatchedStmt, ret, fixDecl)) {
-
     auto MyDiag = diag(MatchedStmt->getBeginLoc(), "declaration name is out of order");
     if (fixDecl == false)
       return;
