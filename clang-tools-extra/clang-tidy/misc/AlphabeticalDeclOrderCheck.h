@@ -15,10 +15,10 @@ namespace clang {
 namespace tidy {
 namespace misc {
 
-/// FIXME: Write a short description.
-///
-/// For the user-facing documentation see:
-/// http://clang.llvm.org/extra/clang-tidy/checks/misc-alphabetical-decl-order.html
+/// AlphabeticalDeclOrderCheck 
+///   Checks for alphabetical order on same line declarations. This provides
+///   FIXIT hints as well.
+/// Custom Added Check
 class AlphabeticalDeclOrderCheck : public ClangTidyCheck {
 public:
   AlphabeticalDeclOrderCheck(StringRef Name, ClangTidyContext *Context)
