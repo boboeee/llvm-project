@@ -58,11 +58,12 @@ void AlphabeticalDeclOrderCheck::check(const MatchFinder::MatchResult &Result) {
     return;  
   }
 
-  if (!checkAlphabeticalOrder(MatchedStmt, ret, fixDecl)) {
+  if (!checkAlphabeticalOrder(MatchedStmt, ret, fixDecl)) {:
     auto MyDiag = diag(MatchedStmt->getBeginLoc(), "declaration name is out of order");
     if (fixDecl == false)
       return;
 
+    //Add suggestions on how to fix the alphabetical order
     std:: sort(ret.begin(), ret.end());
     auto itStmt = MatchedStmt->decl_begin();
     auto itVec = ret.begin();
@@ -72,9 +73,7 @@ void AlphabeticalDeclOrderCheck::check(const MatchFinder::MatchResult &Result) {
         continue;
 
       SourceRange RemovalRange(varDecl->getLocation());
-
       MyDiag << FixItHint::CreateReplacement(RemovalRange, (*itVec).str());
-
     }
   }
   
