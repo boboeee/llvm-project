@@ -88,6 +88,12 @@ New checks
   Flags use of the `C` standard library functions ``memset``, ``memcpy`` and
   ``memcmp`` and similar derivatives on non-trivial types.
 
+- New :doc:`misc-alphabetical-decl-order
+  <clang-tidy/checks/misc-alphabetical-decl-order>` check.
+
+Checks and possibly fixes the same line declarations, to maintain alphabetical
+order.
+
 - New :doc:`objc-dealloc-in-category
   <clang-tidy/checks/objc-dealloc-in-category>` check.
 
